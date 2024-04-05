@@ -1,0 +1,15 @@
+<%= javascript_include_tag 'modal_form', plugin: 'bot_kb' %>
+<script>
+  $(document).ready(function() {
+  });
+</script>
+<p>
+
+
+<% if !BotKb.where(issue_id: @issue.id).present? %>
+  <%= link_to 'New Knowledge Base Entry', new_bot_kb_path(issue_id: @issue.id) %>
+<% else %>
+  <%= link_to 'Edit Knowledge Base Entry', edit_bot_kb_path(issue_id: @issue.id) %>
+<% end %>
+ 
+</p>

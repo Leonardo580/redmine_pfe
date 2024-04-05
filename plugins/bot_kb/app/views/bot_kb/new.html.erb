@@ -1,0 +1,70 @@
+<h2>New Knowledge Base Entry</h2>
+<%= form_with model: @kb, url: bot_kb_index_path(@issue), method: :post do |form| %>
+  <div class="kb-form">
+    <div class="form-group">
+      <%= form.label :subject, class: 'required' %>
+      <%= form.text_field :subject, required: true, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= form.label :question, class: 'required' %>
+      <div class="wiki-edit">
+        <%= form.text_area :question, required: true, rows: 5, class: 'wiki-edit' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= form.label :answer, class: 'required' %>
+      <div class="wiki-edit">
+        <%= form.text_area :answer, required: true, rows: 5, class: 'wiki-edit', id: 'answer' %>
+        <%= wikitoolbar_for 'answer' %>
+      </div>
+    </div>
+    <div class="form-group">
+  <%= form.label :related_issue, class: 'required' %>
+  <%= form.select :related_issue_id,
+      options_for_select([['', '']] + Issue.all.map { |issue| [issue.subject, issue.id] }),
+      { include_blank: false },
+      { required: false, class: 'form-control' } %>
+</div>
+    <div class="form-group">
+      <%= form.label :tag %>
+      <%= form.text_field :tag, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= form.submit 'Save', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', issue_path(@issue) %>
+    </div>
+  </div>
+<% end %>
+
+<style>
+  .kb-form {
+    max-width: 85em;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label.required::after {
+    content: '*';
+    color: red;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+
+  textarea.form-control {
+    resize: vertical;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+  }
+</style>
