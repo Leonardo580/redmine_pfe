@@ -1,4 +1,4 @@
 class BotKb < ActiveRecord::Base
   belongs_to :issue
-  belongs_to :related_issue, class_name: 'Issue', optional: true
+  belongs_to :related_knowledge_base, class_name: 'BotKb', optional: true
 end

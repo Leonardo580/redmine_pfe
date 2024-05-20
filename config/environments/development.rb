@@ -59,4 +59,8 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  config.api_url="192.168.1.29:8000"
+  config.kb_key="xJeUOeAC.G21G3m99hKz3tHT5FPUNO7utSS511HHD"
+  
 end

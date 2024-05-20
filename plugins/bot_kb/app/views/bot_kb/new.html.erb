@@ -18,17 +18,23 @@
         <%= wikitoolbar_for 'answer' %>
       </div>
     </div>
+    <div class="splitcontent">
+    <div class="splitcontentleft">
     <div class="form-group">
-  <%= form.label :related_issue, class: 'required' %>
-  <%= form.select :related_issue_id,
-      options_for_select([['', '']] + Issue.all.map { |issue| [issue.subject, issue.id] }),
-      { include_blank: false },
-      { required: false, class: 'form-control' } %>
-</div>
-    <div class="form-group">
-      <%= form.label :tag %>
-      <%= form.text_field :tag, class: 'form-control' %>
+      <%= form.label :related_knowledge_base_id, class: 'required' %>
+      <%= form.select :related_knowledge_base_id,
+          options_for_select([['', '']] + BotKb.all.map { |kb| [kb.subject, kb.id] }, @kb.related_knowledge_base_id),
+          { include_blank: false },
+          { required: false, class: 'form-control' } %>
     </div>
+    </div>
+    <div class="splitcontentright">
+    <div class="form-group">
+  <%= form.label :tag %>
+  <%= form.select :tag, available_tags, { include_blank: true }, class: 'form-control' %>
+  </div>
+  </div>
+  </div>
     <div class="form-group">
       <%= form.submit 'Save', class: 'btn btn-primary' %>
       <%= link_to 'Cancel', issue_path(@issue) %>
@@ -54,7 +60,7 @@
 
   .form-control {
     width: 100%;
-    padding: 10px;
+    <%# padding: 10px; %>
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-top: 5px;
